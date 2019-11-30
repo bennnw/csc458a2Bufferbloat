@@ -207,17 +207,17 @@ def bufferbloat():
         print "%.1fs left..." % (args.time - delta)
         
         for i in range(3):
-            ft = h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html"%h1.IP())
+            ft = h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html"%(h1.IP()))
             ft.wait()
             fetch_times.append(float(ft.communicate()[0]))
 
     # TODO: compute average (and standard deviation) of the fetch
     # times.  You don't need to plot them.  Just note it in your
     # README and explain.
-#     ave = helper.ave(fetch_times)
-#     std = helper.stdev(fetch_times)
-#     print "Average: " + str(ave)
-#     print "Standard deviation: " + str(std)
+    ave = helper.ave(fetch_times)
+    std = helper.stdev(fetch_times)
+    print "Average: " + str(ave)
+    print "Standard deviation: " + str(std)
 
     stop_tcpprobe()
     if qmon is not None:
