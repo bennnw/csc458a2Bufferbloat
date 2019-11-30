@@ -207,7 +207,7 @@ def bufferbloat():
         
         for i in range(3):
             ft = h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html"%h1.IP()).communicate()[0]
-            print(ft)
+            print(ft + "n")
             fetch_times.append(float(ft))
                               
                               
