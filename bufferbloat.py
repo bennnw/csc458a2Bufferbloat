@@ -214,9 +214,9 @@ def bufferbloat():
     # TODO: compute average (and standard deviation) of the fetch
     # times.  You don't need to plot them.  Just note it in your
     # README and explain.
-    average = helper.ave(fetch_times)
+    average = helper.avg(fetch_times)
     std = helper.stdev(fetch_times)
-    print "Average: " + str(ave)
+    print "Average: " + str(average)
     print "Standard deviation: " + str(std)
 
     stop_tcpprobe()
