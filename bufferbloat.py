@@ -85,8 +85,8 @@ class BBTopo(Topo):
         # TODO: Add links with appropriate characteristics
         delay = '%sms'%args.delay
         maxq = args.maxq
-        self.addLink('h1', switch, bw=arg.bw_host, delay=delay, max_queue_size=maxq)
-        self.addLink('h2', switch, bw=arg.bw_net, delay=delay, max_queue_size=maxq)
+        self.addLink('h1', switch, bw=args.bw_host, delay=delay, max_queue_size=maxq)
+        self.addLink('h2', switch, bw=args.bw_net, delay=delay, max_queue_size=maxq)
 
 # Simple wrappers around monitoring utilities.  You are welcome to
 # contribute neatly written (using classes) monitoring scripts for
