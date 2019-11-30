@@ -195,7 +195,8 @@ def bufferbloat():
     # spawned on host h1 (not from google!)
     # Hint: have a separate function to do this and you may find the
     # loop below useful.
-    h1, h2 = net.get('h1', 'h2')
+    h1 = net.get('h1')
+    h2 = net.get('h2')
     start_time = time()
     fetch_times = []
     cmd = "curl -o /dev/null -s -w %%{time_total} %s/http/index.html"%h1.IP()
@@ -210,8 +211,9 @@ def bufferbloat():
         print "%.1fs left..." % (args.time - delta)
         
         for i in range(3):
-            t = h2.popen(cmd).communicate()[0]
-            fetch_times.append(float(t))
+            t = h2.popen(cmd)
+            t.wait()
+            fetch_times.append(float(t.communicate()[0]))
 
     # TODO: compute average (and standard deviation) of the fetch
     # times.  You don't need to plot them.  Just note it in your
@@ -231,4 +233,5 @@ def bufferbloat():
 
 if __name__ == "__main__":
     bufferbloat()
+    
     
