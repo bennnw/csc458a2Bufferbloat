@@ -207,9 +207,9 @@ def bufferbloat():
         print "%.1fs left..." % (args.time - delta)
         
         for i in range(3):
-            t = h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html"%h1.IP())
-            t.wait()
-            fetch_times.append(float(t.communicate()[0]))
+            ft = h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html"%h1.IP())
+            ft.wait()
+            fetch_times.append(float(ft.communicate()[0]))
 
     # TODO: compute average (and standard deviation) of the fetch
     # times.  You don't need to plot them.  Just note it in your
