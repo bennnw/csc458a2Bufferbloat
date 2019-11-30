@@ -142,9 +142,7 @@ def start_ping(net):
     # redirecting stdout
     h1 = net.get('h1')
     h2 = net.get('h2')
-    cmd = "ping -i .1 -w %d %s > %s/ping.txt"%(args.time, h2.IP(), args.dir)
-    print cmd
-    popen = h1.popen(cmd, shell=True)
+    popen = h1.popen("ping -i .1 -w %d %s > %s/ping.txt"%(args.time, h2.IP(), args.dir), shell=True)
 
 def bufferbloat():
     if not os.path.exists(args.dir):
@@ -199,8 +197,6 @@ def bufferbloat():
     h2 = net.get('h2')
     start_time = time()
     fetch_times = []
-    cmd = "curl -o /dev/null -s -w %%{time_total} %s/http/index.html"%h1.IP()
-    print cmd
     while True:
         # do the measurement (say) 3 times.
         sleep(1)
@@ -211,7 +207,7 @@ def bufferbloat():
         print "%.1fs left..." % (args.time - delta)
         
         for i in range(3):
-            t = h2.popen(cmd)
+            t = h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html"%h1.IP())
             t.wait()
             fetch_times.append(float(t.communicate()[0]))
 
