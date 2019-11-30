@@ -178,7 +178,6 @@ def bufferbloat():
     # TODO: Start iperf, webservers, etc.
     start_iperf(net)
     start_webserver(net)
-    start_ping(net)
 
     # Hint: The command below invokes a CLI which you can use to
     # debug.  It allows you to run arbitrary commands inside your
@@ -207,8 +206,11 @@ def bufferbloat():
         print "%.1fs left..." % (args.time - delta)
         
         for i in range(3):
-            ft = h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html"%h1.IP())
-            fetch_times.append(float(ft.communicate()[0]))
+            ft = h2.popen("curl -o /dev/null -s -w %%{time_total} %s/http/index.html"%h1.IP()).communicate()[0]
+            print(ft)
+            fetch_times.append(float(ft))
+                              
+                              
 
     # TODO: compute average (and standard deviation) of the fetch
     # times.  You don't need to plot them.  Just note it in your
